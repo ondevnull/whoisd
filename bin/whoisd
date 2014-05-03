@@ -1,0 +1,36 @@
+#!/usr/bin/env node
+
+//var whoisthis = require('whoisthis');
+var whoisthis = require('net');
+var server = whoisthis.createServer();
+var version = require('../package.json').version;
+var nopt = require('nopt');
+var knownOpts = {
+  'storage': path,
+  'port': Number
+};
+var shortHands = {
+  's': ['--storage'],
+  'p': ['--port']
+};
+
+function usage () {
+}
+
+var parsed;
+try {
+ parsed = nopt(knownOpts, shortHands, process.argv, 2);
+} catch (e) {
+  usage(1, e.toString());
+}
+
+//var level = require('level');
+//var db = level(program.storage);
+
+server.on('connection', function (req, res) {
+  // here should go the request and the response.
+  req();
+  res();
+});
+
+server.listen(parsed.port || 43);

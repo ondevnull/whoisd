@@ -14,7 +14,8 @@ var shortHands = {
   'p': ['--port']
 };
 
-function usage () {
+function usage (code, message) {
+
 }
 
 var parsed;
